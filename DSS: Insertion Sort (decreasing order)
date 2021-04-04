@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std; 
+
+int main()
+{
+    int i,j,n,key,a[10];
+    
+    cout<<"Enter the size"<<endl;
+    cin>>n;
+    cout<<"Enter the digits"<<endl;
+    for(i=1; i<=n; i++)
+    {
+        cin>>a[i];
+    }
+    
+    for(j=2; j<=n; j++)
+    {
+        cout<<"Working on Pass Number:"<<j-1<<endl;
+        key=a[j];
+        i=j-1;
+        while(i>0 &&a[i]<key)
+        {  
+            a[i+1]=a[i];
+            i=i-1;
+        }
+        a[i+1]=key;
+    }
+    
+    cout<<"The sorted decreasing order output is:"<<endl;
+    for(i=1; i<=n; i++)
+    {
+        cout<<a[i]<<" ";
+    }
+    return 0;
+}
