@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+int display(int A[], int n)
+{
+    for(int i=0; i<n; i++)
+        printf("%d ", A[i]);
+    printf("\n");
+}
+
+void bubbleSort(int A[], int n)
+{
+    int swapped=0, i, j,temp;
+    for(int i=0; i<n-1; i++)
+    {
+        printf("Working on pass number:%d \n", i+1);
+        swapped=1;
+        for(j=0; j<n-i-1; j++)
+            if(A[j]>A[j+1])
+            {
+                 temp=A[j];
+                 A[j]=A[j+1];
+                 A[j+1]=temp;
+                 swapped=0;
+            }
+        
+        if(swapped)
+            return;
+    }
+}
+
+
+int main()
+{
+    int A[100],n;
+    printf("Enter the number of elements\n");
+    scanf("%d", &n);
+    
+    printf("Enter the array elements\n");
+    
+    for(int i=0; i<n; i++)
+        scanf("%d", &A[i]);
+    
+    display(A,n);
+    bubbleSort(A,n);
+    display(A,n);
+
+    return 0;
+}
