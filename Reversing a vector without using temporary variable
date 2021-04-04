@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int main ()
+{
+  int vector[10], i, p;
+  printf ("Enter the elements of vector\n");
+  for (i = 0; i < 10; i++)
+    scanf ("%d", &vector[i]);
+  printf ("The vector originally is as follows:\n");
+  for (i = 0; i < 10; i++)
+    printf (" %d ", vector[i]);
+  for (i = 0, p = 10 - 1; i < 10 / 2; i++, p--)
+    {
+      vector[i] = vector[i] + vector[p];
+      vector[p] = vector[i] - vector[p];
+      vector[i] = vector[i] - vector[p];
+    }
+  printf ("\nThe reversed vector is as follows:\n");
+  for (i = 0; i < 10; i++)
+    printf (" %d ", vector[i]);
+  return 0;
+}
+
