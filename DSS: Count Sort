@@ -1,0 +1,80 @@
+#include <stdio.h>
+#include <limits.h>
+#include <stdlib.h>
+
+
+int display(int A[], int n)
+{
+    for(int i=0; i<n; i++)
+        printf("%d ", A[i]);
+    printf("\n");
+}
+
+
+
+int maximum(int A[], int n)
+{
+    int max=INT_MIN;
+    for(int i=0; i<n; i++)
+    {
+        if(max<A[i])
+            max=A[i];
+    }
+    return max;
+}
+
+int countSort(int A[], int n) //Linear Time Complexity, O(m+n) == O(n) (approx)
+{
+    int max=maximum(A,n);
+    int i,j;
+    
+    //dynamically creating a count array
+    int* count= (int*)malloc((max+1)*sizeof(int));
+    
+    //initialising contents of count array as zero
+    for(i=0; i<max+1; i++)
+        count[i]=0;
+    
+    //incrementing elements of count array as per the elements present in the given array
+    for(i=0; i<n; i++)
+        count[A[i]]=count[A[i]]+1;
+        
+    i=0;//counter for count array
+    j=0;//counter for given array
+    
+    //traversing the count array
+    while(i<=max)
+    {
+        if(count[i]>0)
+        {
+            A[j]=i;
+            count[i]=count[i]-1;
+            j++;
+        }
+        else
+            i++;
+    }
+    
+}
+
+int main()
+{
+    int A[100], n;
+    
+    printf("Enter the number of array elements:\n");
+    scanf("%d", &n);
+    
+    printf("Enter the array elements:\n");
+    for(int i=0; i<n; i++)
+        scanf("%d", &A[i]);
+    
+    printf("Array given as Input:\n");
+    display(A,n);
+    
+    countSort(A,n);
+    
+    printf("Array after sort:\n");
+    display(A,n);
+    
+    return 0;
+}
