@@ -1,5 +1,5 @@
 # NJ
-#Code for the Project
+# Code for the Sample Project done in HTML and Bootstrap method.
 <!DOCTYPE html>
 <html>
 	<head> 
