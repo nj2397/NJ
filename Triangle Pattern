@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int i,j,m,n;
+    
+    m=7;
+    
+    n=m/2;
+    
+    for(i=n; i>=-n; i--)
+    {
+        for(j=n; j>=abs(i); j--)
+        
+            printf("* ");
+        
+        printf("\n");
+    }
+    return 0;
+}
