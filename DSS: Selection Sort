@@ -1,0 +1,49 @@
+#include <stdio.h>
+
+int display(int A[], int n)
+{
+    for(int i=0; i<n; i++)
+        printf("%d ", A[i]);
+    printf("\n");
+}
+
+
+int selectionSort(int A[], int n)
+{
+    int i,j,min,temp;
+    for(i=0; i<n-1; i++)
+    {
+        min=i;
+        for(j=i+1; j<n; j++)
+        {
+            if(A[j]<A[min])
+                min=j;
+        }
+        temp=A[i];
+        A[i]=A[min];
+        A[min]=temp;
+    }
+}    
+
+
+
+int main()
+{
+    int n, A[100];
+    
+    printf("Enter the number of elements required in the array\n");
+    scanf("%d", &n);
+    
+    printf("Enter the array elements\n");
+    for(int i=0; i<n; i++)
+        scanf("%d", &A[i]);
+    
+    printf("The input Array is: \n");    
+    display(A, n);
+    selectionSort(A, n); //Selection Sort function call
+    
+    printf("The array after getting sorted is:\n");
+    display(A, n);
+
+    return 0;
+}
