@@ -1,0 +1,99 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef struct node{
+    int data;
+    struct node *left;
+    struct node *right;
+}Node;
+
+Node *root = NULL;
+Node *createnode(int data)
+{
+    Node *newnode = (Node*)malloc(sizeof(Node));
+    newnode -> data = data;
+    newnode -> left = NULL;
+    newnode -> right = NULL;
+
+    return newnode;
+}
+
+void preOrderTraversal(Node *node)
+{
+    if(node!=NULL)
+    {
+        cout<<node->data<<" ";
+        preOrderTraversal(node->left);
+        preOrderTraversal(node->right);
+    }
+}
+
+void postOrderTraversal(Node *node)
+{
+    if(node!=NULL)
+    {
+        postOrderTraversal(node->left);
+        postOrderTraversal(node->right);
+        cout<<node->data<<" ";
+    }
+}
+
+void inOrderTraversal(Node *node)
+{
+    if(node!=NULL)
+    {
+        inOrderTraversal(node->left);
+        cout<<node->data<<" ";
+        inOrderTraversal(node->right);
+    }
+}
+
+int maxheight(Node *node)
+{
+    if(node==NULL)
+        return 0;
+    int l = 1 + maxheight(node->left);
+    int r = 1 + maxheight(node->right);
+    int sum = max(l,r);
+    return sum;
+}
+
+int size(Node *node)
+{
+    if(node == NULL)
+        return 0;
+    else
+        return (1+size(node->left)+size(node->right));
+}
+
+int main()
+{
+    root = createnode(5);
+    root->left = createnode(4);
+    root->right = createnode(6);
+    root->left->left = createnode(7);
+    root->left->right = createnode(8);
+    root->right->left = createnode(9);
+    root->right->right = createnode(10);
+
+    cout<<"Preorder Traversal of the tree is: "<<endl;
+    preOrderTraversal(root);
+
+    cout<<endl;
+
+    cout<<"Postorder Traversal of the tree is: "<<endl;
+    postOrderTraversal(root);
+
+    cout<<endl;
+
+    cout<<"Inorder Traversal of the tree is: "<<endl;
+    inOrderTraversal(root);
+
+    cout<<endl;
+
+    cout<<endl;
+    cout<<"Maximum height is: "<<maxheight(root)<<endl;
+    cout<<"Size of tree is: "<<size(root);
+    return 0;
+}
+
