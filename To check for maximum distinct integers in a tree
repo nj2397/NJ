@@ -1,0 +1,85 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+typedef struct node{
+    int data;
+    struct node *left;
+    struct node *right;
+}Node;
+
+Node *root = NULL;
+
+Node *createNode(int data)
+{
+    Node *newnode = (Node*)malloc(sizeof(Node));
+
+    newnode -> data = data;
+    newnode -> left = NULL;
+    newnode -> right = NULL;
+
+    return newnode;
+}
+
+int mx = 0;
+
+void maxDist(Node *node, vector<int> arr, vector<int> hash)
+{
+    if(node == NULL)
+        return;
+
+    if(hash[node->data] == 0)
+    {
+        arr.push_back(node->data);
+        hash[node->data] = 1;
+    }
+
+    if(node->left == NULL && node->right == NULL)
+    {
+        if(arr.size() > mx)
+        {
+            mx = arr.size();
+        }
+        arr.pop_back();
+        return;
+    }
+
+    maxDist(node->left, arr, hash);
+    maxDist(node->right, arr, hash);
+
+    arr.pop_back();
+    return;
+
+}
+
+int main()
+{
+    root = createNode(13);
+    root->left = createNode(3);
+    root->right = createNode(22);
+    root->left->left = createNode(1);
+    root->left->right = createNode(7);
+    root->right->left = createNode(15);
+    root->right->right = createNode(24);
+
+    root->left->right->right = createNode(8);
+    root->left->right->right->right = createNode(11);
+    root->right->right->left = createNode(23);
+
+    root->right->left->left = createNode(14);
+    root->right->left->right = createNode(20);
+    root->right->left->right->left = createNode(17);
+    root->right->left->right->left->left = createNode(12);
+
+
+
+    vector<int> arr;
+    vector<int> hash(64);
+
+    int m = 0;
+    maxDist(root, arr, hash);
+    cout<<mx<<endl;
+    return 0;
+}
+
+
+
