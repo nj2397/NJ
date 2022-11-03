@@ -1,1 +1,1 @@
-Repository is based on Project curriculums and Programming related stuffs. Feel free to visit. Thank You.
+Repository is based on project curriculums and programming related stuffs. Feel free to visit. Thank You.
